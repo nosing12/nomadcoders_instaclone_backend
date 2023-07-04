@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon --exec node server.js"
+    "dev": "nodemon --exec babel-node server.js"
   },
   "keywords": [],
   "author": "",
@@ -15,6 +15,9 @@
   },
   "type": "module",
   "devDependencies": {
+    "@babel/core": "^7.22.6",
+    "@babel/node": "^7.22.6",
+    "@babel/preset-env": "^7.22.6",
     "nodemon": "^2.0.22"
   }
 }
