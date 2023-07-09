@@ -13,7 +13,8 @@ const loadedTypeDefs = await loadFiles(`${__dirname}/**/*.typeDefs.js`, {
     return await import(url.pathToFileURL(path));
   },
 });
-const loadedResolvers = await loadFiles(`${__dirname}/**/*.{resolvers}.js`, {
+
+const loadedResolvers = await loadFiles(`${__dirname}/**/*.resolvers.js`, {
   ignoreIndex: true,
   requireMethod: async (path) => {
     return await import(url.pathToFileURL(path));
