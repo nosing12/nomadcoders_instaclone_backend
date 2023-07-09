@@ -7,6 +7,8 @@ const typeDefs = `#graphql
     email: String!
     createdAt: String!
     updatedAt: String!
+    bio: String
+    avatar: String
   }
 `;
 
