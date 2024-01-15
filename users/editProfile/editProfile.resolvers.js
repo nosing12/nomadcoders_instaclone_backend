@@ -21,6 +21,7 @@ export default {
         },
         { loggedInUser }
       ) => {
+        console.log(avatar);
         let avatarUrl = null;
         if (avatar) {
           const { filename, createReadStream } = await avatar;
