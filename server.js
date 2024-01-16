@@ -15,21 +15,20 @@ import graphqlUploadExpress from "graphql-upload/graphqlUploadExpress.mjs";
 const app = express();
 const PORT = process.env.PORT;
 const httpServer = http.createServer(app);
-const server = new ApolloServer({
+const apollo = new ApolloServer({
   typeDefs,
   resolvers,
   plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
 });
 
-await server.start();
-
+await apollo.start();
+app.use(logger("tiny"));
 app.use(
   "/graphql",
-  logger("tiny"),
   cors(),
   json(),
   graphqlUploadExpress(),
-  expressMiddleware(server, {
+  expressMiddleware(apollo, {
     context: async ({ req }) => {
       return {
         loggedInUser: await getUser(req.headers.token),
@@ -37,7 +36,6 @@ app.use(
     },
   })
 );
-
 app.use("/static", express.static("uploads"));
 
 await new Promise((resolve) => httpServer.listen({ port: PORT }, resolve));
